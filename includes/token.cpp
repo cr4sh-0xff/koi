@@ -94,7 +94,7 @@ double term()
 	}
 }
 
-double primary()
+/*double primary()
 {
 	Token t = ts.get();
 	switch (t.kind)
@@ -114,4 +114,26 @@ double primary()
 	default:
 		throw std::runtime_error("[+]Primary expression required");
 	}
+}*/
+
+double primary()
+{
+	Token t = ts.get();
+	double d;
+	if (t.kind == '(')
+	{
+		d = expression();
+		t = ts.get();
+		if (t.kind != ')')
+		{
+			throw std::runtime_error("[+]Required ')'");
+		}
+		return d;
+	}
+	if (t.kind == '8')
+	{
+		return t.value;
+	}
+	
 }
+
